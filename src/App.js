@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import ExpenseForm from "./Components/Forms/ExpenseForm";
+import Expenselist from "./Components/Forms/Expenseslist";
 
 function App() {
+  const [expenses, setExpenses] = useState([]);
+  const IncomingExpenses = ({ itemName, productid, price, id }) => {
+    setExpenses((preState) => {
+      return [
+        ...preState,
+        {
+          iname: itemName,
+          productid: productid,
+          price: price,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+  };
+
+  console.log(expenses);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ExpenseForm onIncomingExpenses={IncomingExpenses} />
+      <Expenselist expenselist={expenses} setExpenses={setExpenses} />
     </div>
   );
 }

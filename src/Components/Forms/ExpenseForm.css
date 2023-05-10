@@ -1,0 +1,4 @@
+.expensesItems {
+  display: flex;
+  flex-direction: row;
+}
