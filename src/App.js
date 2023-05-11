@@ -5,7 +5,8 @@ import Expenselist from "./Components/Forms/Expenseslist";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
-  const IncomingExpenses = ({ itemName, productid, price, id }) => {
+  const IncomingExpenses = ({ itemName, productid, price }, id) => {
+    //console.log(id);
     setExpenses((preState) => {
       return [
         ...preState,
@@ -13,7 +14,7 @@ function App() {
           iname: itemName,
           productid: productid,
           price: price,
-          id: Math.random().toString(),
+          id: id,
         },
       ];
     });
